@@ -1,0 +1,59 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+__license__   = 'GPL v3'
+__copyright__ = '2011, Feng Li <nemokingdom@gmail.com>'
+'''
+time
+'''
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class NewsRecipeBBC(BasicNewsRecipe):
+    title          = u'TIME'
+    __author__     = u'ikindle.mobi'
+    description    = u'时代周刊是美国影响最大的新闻周刊，有世界“史库”之称。辟有多种栏目，如经济、教育、法律、批评、体育、宗教、医药、艺术、人物、书评和读者来信等。'
+    language = 'en'
+    oldest_article = 2
+    max_articles_per_feed = 20
+    no_stylesheets = True
+    remove_attributes = ['width','height', 'href']
+    remove_tags    = [
+	    dict(name='div', attrs={'class':['content-tools','first-tier-social-tools',]}),
+	    dict(name='div', attrs={'id':['disqus_thread',]}),                
+	    ]
+    remove_tags_after = [
+#	    dict(name='div', attrs={'class':'entry-content'}),	    
+	    ]
+
+    keep_only_tags = [
+        dict(name='div', attrs={'class':['artHdWrapper'],}),        
+        dict(name='div', attrs={'class':['articleContent'],}),
+        ]
+
+    extra_css      = '''
+                        body{font-family:Arial,Helvetica,sans-serif; font-size:small; align:left}
+                        h1{font-size:130%;color:#222222;}
+			div.byline span.story-date{float: left;font-style: normal; font-size:80%; color:grey;}
+			p.introduction {font-weight: bold;}
+			span[style="width:304px;"]{display:block; clear:both; font-size: 90%; color: #333333;}
+			span.cross-head{font-size:120%; font-weight:bold; color:#333333; }
+                        .sh{font-size:large; font-weight:bold}
+                        .cap{font-size:xx-small; }
+                        .lu{font-size:xx-small; }
+                        .ds{font-size:xx-small; }
+                        .mvb{font-size:xx-small;}
+                        .by1{font-size:x-small;  color:#666666}
+                        .byd{font-size:x-small;}
+                     '''
+
+    feeds          = [
+                      ('The World', 'http://feeds2.feedburner.com/time/world/'),
+                      # ('Most Viewed', 'http://feeds2.feedburner.com/time/mostviewed'),
+                      # ('Most Emailed', 'http://feeds2.feedburner.com/time/mostemailed'),                
+                    ]
+
+  #  def print_version(self, url):
+  #      return url.replace('http://', 'http://newsvote.bbc.co.uk/mpapps/pagetools/print/')
+
+

@@ -1,0 +1,39 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
+    title          = u'译言'
+    oldest_article = 2
+    max_articles_per_feed = 5
+
+    feeds          = [
+        (u'每日精品译文', u'http://feed.feedsky.com/yeeyan'),
+	(u'电脑/网络/数码科技', u'http://feed.feedsky.com/yeeyan-tech'),
+	(u'社会/文化/法律', u'http://feed.feedsky.com/yeeyan-culture'),
+	(u'教育与学习', u'http://feed.feedsky.com/yeeyan-learn'),
+	]
+    extra_css = """
+    h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    p.caption, div.datestamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = 'ikindle.mobi'
+    description           = u'发现，翻译，阅读中文之外的互联网精华'
+    category              = 'News, Chinese'
+    remove_javascript = True
+    masthead_url = 'http://ikindle.mobi/media/pic/yeeyan.gif'    
+    use_embedded_content   = True
+    no_stylesheets = True
+    encoding               = 'UTF-8'
+    conversion_options = {'linearize_tables':True}
+    keep_only_tags = [
+        ]
+    remove_tags = [
+        ]
+

@@ -1,0 +1,55 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeSina(BasicNewsRecipe):
+    keep_only_tags    = [
+        dict(name='div', attrs={'class':['blkContainerSblk']}),
+        ]
+
+    remove_tags = [
+        dict(name='div', attrs={'class':['blkComment otherContent_01', 'otherContent_01']}),
+        dict(name='span', attrs={'id':['comment_t_show_top']}),
+        dict(name='div', attrs={'style':['text-align: right;padding-right:10px;']}),
+        dict(name='div', attrs={'style':['text-align: right;padding-right:100px;']}),
+        dict(name='div', attrs={'style':['margin-top:6px;']}),
+        dict(name='div', attrs={'class':['moreInfo']}),
+        dict(name='span', attrs={'id':['art_source']}),
+        ]
+
+    remove_attributes = ['width','height', 'color', 'style', 'href']
+
+    feeds          = [
+	(u'新闻要闻', u'http://rss.sina.com.cn/news/marquee/ddt.xml'),
+	(u'国内要闻', u'http://rss.sina.com.cn/news/china/focus15.xml'),
+	(u'国际要闻', u'http://rss.sina.com.cn/news/world/focus15.xml'),
+	(u'社会新闻', u'http://rss.sina.com.cn/news/society/focus15.xml'),
+	(u'时政要闻', u'http://rss.sina.com.cn/news/china/politics15.xml'),
+	(u'港澳台新闻', u'http://rss.sina.com.cn/news/china/hktaiwan15.xml'),
+	]
+    extra_css = '''
+    h1.artibodyTitle,h1#artibodyTitle {padding-bottom: 10px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    span#art_source, span#pub_date, span#media_name {color: #666666; font-size: 70%;}\n
+    a {text-decoration: none; color: #666666;}\n
+    strong {font-weight: bold; font-size: 100%; color: #222222;}\n
+    div#artibody{line-height: 120%;}\n
+    span.img_descr {clear: both;display: block;font-size:90%;color:#333333;}\n
+    '''
+
+    __author__             = u'ikindle.mobi'
+    __version__            = u'1.0'
+    oldest_article         = 2
+    max_articles_per_feed  = 8
+    publication_type       = 'newspaper'
+    masthead_url = 'http://ikindle.mobi/media/pic/sina.gif'         
+    title          = u'Sina News'
+    language = 'zh_CN'
+    publisher              = 'sina.com.cn'
+    description           = u'新浪新闻中心'
+    category              = 'News, Chinese'
+    remove_javascript = True
+    use_embedded_content   = False
+    no_stylesheets = True
+    encoding               = 'gb18030'
+    conversion_options = {'linearize_tables':True}

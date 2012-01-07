@@ -1,0 +1,49 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# 南方周末-热点新闻
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeSina(BasicNewsRecipe):
+    keep_only_tags    = [
+        dict(name='div', attrs={'id':['detailContent']}),        
+        ]
+
+    remove_tags = [
+        dict(name='div', attrs={'id':['detailSideL', 'detailTools', 'pageNum', 'clear', 'diggButton',
+                                      'grade', 'editor', 'comments', 'share']}),
+        dict(name='span', attrs={'class':['source']}),
+        dict(name='div', attrs={'class':['share']}), 
+        ]
+
+    remove_attributes = ['width','height', 'color', 'style', 'href']
+
+    feeds          = [
+	(u'首页', u'http://feeds.feedburner.com/infzm/hVMz'),
+	]
+
+    extra_css = '''
+    h1,h2,h4 {padding-top: 2px; font-size: 120%;font-weight: bold; color: #222222;}\n
+    h5 {color: #666666; font-size: 70%;}\n
+    a {text-decoration: none; color: #666666;}\n
+    strong {font-weight: bold; font-size: 100%; color: #222222;}\n
+    div#artibody{line-height: 120%;}\n
+    .author em {float: left;font-style: normal; font-size:60%; color:grey;}\n
+    .author strong {float: left;font-weight: normal;position: relative;font-size:60%; color:grey;}\n
+    .pubTime {clear: both;display: block;font-size:60%;color:grey;padding-top:-1px;}\n
+    '''
+    __author__             = u'ikindle.mobi'
+    __version__            = u'1.0'
+    oldest_article         = 10
+    max_articles_per_feed  = 10
+    publication_type       = 'blog'
+    title          = u'南方周末-热点新闻'
+    masthead_url = 'http://ikindle.mobi/media/pic/nfzm.png'                 
+    language = 'zh-CN'
+    publisher              = '南方周末-热点新闻'
+    description           = u'在这里 读懂中国'
+    category              = 'magazine'
+    remove_javascript = True
+    use_embedded_content   = False
+    no_stylesheets = True
+    encoding               = 'utf-8'
+    conversion_options = {'linearize_tables':True}

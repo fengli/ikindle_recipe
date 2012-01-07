@@ -1,0 +1,40 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeVOAChinese(BasicNewsRecipe):
+    title          = u'科学松鼠会'
+    oldest_article = 5
+    max_articles_per_feed = 3
+
+    feeds          = [
+	(u'科学松鼠会', u'http://songshuhui.net/feed')
+	]
+    extra_css = """
+    h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    p.wp-caption-text, div.dateStamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = '科学松鼠会'
+    description           = u'科学松鼠会是一个汇聚了当代最优秀的华语青年科学传播者的非营利机构，旨在剥开科学的坚果，帮助人们领略科学之美妙'
+    category              = u'News'
+    masthead_url = 'http://ikindle.mobi/media/pic/kxssh.png'     
+    remove_javascript = True
+    use_embedded_content   = True
+    publication_type       = 'blog'    
+    no_stylesheets = True
+    encoding               = 'UTF-8'
+    conversion_options = {'linearize_tables':True}
+    remove_attributes = ['href']
+    keep_only_tags = [
+      ]
+    remove_tags = [
+      # dict(name='div', attrs={'class':['toolWrap','mediaLinks']}),
+      # dict(name='h4', attrs={'class':['sectionHeader']}),
+      ]
+

@@ -1,0 +1,43 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
+    title          = u'CnBeta'
+    oldest_article = 5
+    max_articles_per_feed = 10
+
+    feeds          = [
+	(u'CnBeta', u'http://feeds.feedburner.com/cnbeta/wHNV'),
+	]
+    extra_css = """
+    p#news_author {font-size: 80%, color:grey;}\n
+    h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    p.caption, div.datestamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = 'CnBeta'
+    description           = u'IT新闻 消息速度快，报导立场公正中立，网友讨论气氛浓厚，在IT业界拥有相当的影响力'
+    category              = 'IT News, Chinese'
+    remove_javascript = True
+    use_embedded_content   = False
+    no_stylesheets = True
+    encoding               = 'gb18030'
+    conversion_options = {'linearize_tables':True}
+    keep_only_tags = [
+        dict(name='div', attrs={'id':['news']}),
+        ]
+
+    remove_tags_after = [
+        dict(name='div', attrs={'id':['news_content']}),
+      ]
+    remove_tags = [
+        dict(name='span', attrs={'class':['leftBorder','midBlock','rightBorder']}),
+        dict(name='div', attrs={'class':['digbox']}),        
+        ]
+

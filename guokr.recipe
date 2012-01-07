@@ -1,0 +1,46 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeVOAChinese(BasicNewsRecipe):
+    title          = u'果壳网'
+    oldest_article = 5
+    max_articles_per_feed = 6
+
+    feeds          = [
+	(u'果壳网', u'http://feeds.feedburner.com/guokr/kqrQ')
+	]
+    extra_css = """
+    h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    p.wp-caption-text, div.dateStamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = u'ikindle.mobi'
+    description           = u'果壳网：科技有意思'
+    category              = u'News.'
+    remove_javascript = True
+    use_embedded_content   = True
+    publication_type       = 'blog' 
+    no_stylesheets = True
+    masthead_url = 'http://ikindle.mobi/media/pic/guokr.png'            
+    encoding               = 'UTF-8'
+    conversion_options = {'linearize_tables':True}
+    remove_attributes = ['href']
+    keep_only_tags = [
+      ]
+    remove_tags_after = [
+        dict (name="table", attrs={'class':['docutils field-list']}),
+        dict (name="div", attrs={'class':['line-block']}),                        
+        ]
+    remove_tags = [
+        dict (name="div", attrs={'class':['ct_copyright','document-do']}),
+        dict (name="table", attrs={'class':['docutils field-list']}),        
+        dict (name="div", attrs={'id':['share']})        
+      # dict(name='h4', attrs={'class':['sectionHeader']}),
+      ]
+

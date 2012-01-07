@@ -1,0 +1,44 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeVOAChinese(BasicNewsRecipe):
+    title          = '联合早报'
+    oldest_article = 5
+    max_articles_per_feed = 10
+
+    feeds          = [
+	(u'中国新闻', u'http://www.zaobao.com/zg/zg.xml'),
+        (u'国际新闻', u'http://www.zaobao.com/gj/gj.xml'),
+        (u'世界报刊文萃新闻', u'http://www.zaobao.com/wencui/wencui.xml')
+	]
+    extra_css = """
+    p.title {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    p.wp-caption-text, div.dateStamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = u'ikindle.mobi'
+    description           = u'联合早报网是海外最重要的权威新闻网站，以第三只眼看大中华，客观新闻和深度评析是众多亚太区读者的最爱。'
+    category              = u'News.'
+    remove_javascript = True
+    masthead_url = 'http://ikindle.mobi/media/pic/lhzb.png'    
+    use_embedded_content   = False
+    no_stylesheets = False
+    encoding               = 'gb18030'
+    conversion_options = {'linearize_tables':True}
+    remove_attributes = ['href']
+    keep_only_tags = [
+        dict (name="td", attrs={'width':['100%'],'class':['text']}),        
+      ]
+    remove_tags_after = [
+        ]
+    remove_tags = [
+        dict (name="table", attrs={'align':['left']}),        
+      # dict(name='h4', attrs={'class':['sectionHeader']}),
+      ]
+

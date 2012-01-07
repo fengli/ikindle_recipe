@@ -1,0 +1,38 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
+    title          = u'酷壳'
+    oldest_article = 7
+    max_articles_per_feed = 10
+
+    feeds          = [
+	(u'酷壳', u'http://coolshell.cn/feed'),
+	]
+    extra_css = """
+    h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    h5.itemposttime, p.caption, div.datestamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = 'British Broadcasting Corporation'
+    description           = u'享受编程和技术所带来的快乐.'
+    category              = 'blog, Chinese'
+    remove_javascript = True
+    use_embedded_content   = True
+    publication_type       = 'blog'     
+    no_stylesheets = True
+    encoding               = 'UTF-8'
+    conversion_options = {'linearize_tables':True}
+    remove_tags = [
+        dict(name='table', attrs={'cellspacing':['0'],'cellpadding':['3',],'border':['0',]}),
+        ]
+    remove_tags_after = [
+        dict(name='table', attrs={'cellspacing':['0'],'cellpadding':['3',],'border':['0',]}),
+        ]    
+

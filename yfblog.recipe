@@ -1,0 +1,36 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
+    title          = u'云风的blog'
+    oldest_article = 36
+    max_articles_per_feed = 10
+
+    feeds          = [
+	(u'云风的blog', u'http://feeds.feedburner.com/codingnow/mSVD'),
+	]
+    extra_css = """
+    h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    h5.itemposttime, p.caption, div.datestamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = 'ikindle.mobi'
+    description           = u'思绪来得快去得也快，偶尔会在这里停留. 云风-简悦创始人之一，他的博客关注语言与设计，游戏开发，攀岩，质量非常不错的博客。'
+    category              = 'blog'
+    remove_javascript = True
+    use_embedded_content   = True
+    publication_type       = 'blog'
+    masthead_url = 'http://ikindle.mobi/media/pic/yfblog.png'    
+    no_stylesheets = True
+    encoding               = 'UTF-8'
+    conversion_options = {'linearize_tables':True}
+    remove_tags = [
+        dict(name='a', attrs={'rel':['nofollow']}),
+        ]
+

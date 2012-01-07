@@ -1,0 +1,47 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from calibre.web.feeds.news import BasicNewsRecipe
+
+class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
+    title          = u'BBC Chinese'
+    oldest_article = 1
+    max_articles_per_feed = 15
+
+    feeds          = [
+	(u'\u4e3b\u9875', u'http://www.bbc.co.uk/zhongwen/simp/index.xml'),
+	(u'\u56fd\u9645\u65b0\u95fb', u'http://www.bbc.co.uk/zhongwen/simp/world/index.xml'),
+	(u'\u4e24\u5cb8\u4e09\u5730', u'http://www.bbc.co.uk/zhongwen/simp/china/index.xml'),
+	(u'\u91d1\u878d\u8d22\u7ecf', u'http://www.bbc.co.uk/zhongwen/simp/business/index.xml'),
+	(u'\u7f51\u4e0a\u4e92\u52a8', u'http://www.bbc.co.uk/zhongwen/simp/interactive/index.xml'),
+	(u'\u97f3\u89c6\u56fe\u7247', u'http://www.bbc.co.uk/zhongwen/simp/multimedia/index.xml'),
+	(u'\u5206\u6790\u8bc4\u8bba', u'http://www.bbc.co.uk/zhongwen/simp/indepth/index.xml')
+	]
+    extra_css = """
+    h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
+    h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
+    p.caption, div.datestamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    """
+
+    __author__            = 'ikindle.mobi'
+    __version__            = '1.0'
+    language = 'zh-CN'
+    pubisher  = 'British Broadcasting Corporation'
+    description           = u'BBC新闻中文版'
+    category              = 'News, Chinese'
+    remove_javascript = True
+    masthead_url = 'http://ikindle.mobi/media/pic/bbc_chinese.png'             
+    use_embedded_content   = False
+    no_stylesheets = True
+    encoding               = 'UTF-8'
+    conversion_options = {'linearize_tables':True}
+    masthead_url = 'http://wscdn.bbc.co.uk/zhongwen/simp/images/1024/brand.jpg'
+    keep_only_tags = [
+                              dict(name='h1'),
+                              dict(name='p', attrs={'class':['primary-topic','summary']}),
+                              dict(name='div', attrs={'class':['bodytext','datestamp']}),
+                              ]
+    remove_tags = [
+        dict(name='div', attrs={'class':['module inline-contextual-links']}),
+        ]
+
