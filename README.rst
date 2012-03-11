@@ -1,7 +1,7 @@
 ikindle_recipes
 ==================
 
-这是`ikindle <http://ikindle.mobi>`_ 上从rss生成杂志的配置文件。
+这是 `ikindle <http://ikindle.mobi>`_ 上从rss生成杂志的配置文件。
 在Calibre中，使用这些配置文件可以从指定的rss源抓取并生成mobi格式
 的杂志。
 
