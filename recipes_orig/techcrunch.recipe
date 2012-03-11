@@ -1,40 +1,68 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+__license__   = 'GPL v3'
+__copyright__ = '2011, Darko Miletic <darko.miletic at gmail.com>'
+'''
+techcrunch.com
+'''
 
 from calibre.web.feeds.news import BasicNewsRecipe
 
-class AdvancedUserRecipeLeMonde(BasicNewsRecipe):
-    title          = u'TechCrunch'
-    oldest_article = 2
-    max_articles_per_feed = 10
+class TechCrunch(BasicNewsRecipe):
+    title                 = 'TechCrunch'
+    __author__            = 'Darko Miletic'
+    description           = 'IT News'
+    publisher             = 'AOL Inc.'
+    category              = 'news, IT'
+    oldest_article        = 2
+    max_articles_per_feed = 200
+    no_stylesheets        = True
+    encoding              = 'utf8'
+    use_embedded_content  = False
+    language              = 'en'
+    remove_empty_feeds    = True
+    publication_type      = 'newsportal'
+    masthead_url          = 'http://s2.wp.com/wp-content/themes/vip/tctechcrunch2/images/site-logo.png'
+    extra_css             = """
+                               body{font-family: Helvetica,Arial,sans-serif }
+                               img{margin-bottom: 0.4em; display:block}
+			       h1{font-size:16px;font-weight:bold;}
+			       
+                            """
 
-    feeds          = [
-	(u'TechCrunch', u'http://feeds.feedburner.com/TechCrunch/')
-	]
-    extra_css = """
-    h4 {font-size: 130%;font-weight: 900; color: #222222;}\n
-    h5, p.source, div.dateStamp {display:block; clear:both; font-size: 70%; color: #666666;}
-    """
+    conversion_options = {
+                          'comment'   : description
+                        , 'tags'      : category
+                        , 'publisher' : publisher
+                        , 'language'  : language
+                        }
 
-    __author__            = 'ikindle.mobi'
-    __version__            = '1.0'
-    language = 'en'
-    pubisher  = 'techcrunch.com'
-    description           = u'TechCrunch是全球知名科技博客（英文），主要提供新兴互联网公司的评论。目前全球有超过4,563,000的RSS订阅者。'
-    category              = u'News, USA'
-    remove_javascript = True
-    publication_type       = 'blog'    
-    use_embedded_content   = True
-    no_stylesheets = False
-    encoding               = 'ISO-8859-1'
-    conversion_options = {'linearize_tables':True}
-    keep_only_tags = [
-      ]
     remove_tags = [
-        dict(name='a', attrs={'rel':['nofollow']}),                
-      ]
+    dict(name=['meta','link']),
+    dict(name='div', attrs={'class':['meta-info',]}),
+    ]
+    remove_attributes=['lang']
+    keep_only_tags=[
+                      dict(name='h1', attrs={'class':'headline'})
+                     ,dict(attrs={'class':['author','post-time','body-copy']})
+                   ]
 
-    remove_tags_after = [
-        dict(name='a', attrs={'rel':['nofollow']}),        
-      ]
+    feeds = [(u'News', u'http://feeds.feedburner.com/TechCrunch/')]
 
+    def preprocess_html(self, soup):
+        for item in soup.findAll(style=True):
+            del item['style']
+        for item in soup.findAll('a'):
+            limg = item.find('img')
+            if item.string is not None:
+               str = item.string
+               item.replaceWith(str)
+            else:
+               if limg:
+                  item.name = 'div'
+                  item.attrs = []
+               else:
+                   str = self.tag_to_string(item)
+                   item.replaceWith(str)
+        for item in soup.findAll('img'):
+            if not item.has_key('alt'):
+               item['alt'] = 'image'            
+        return soup

@@ -4,35 +4,35 @@
 from calibre.web.feeds.news import BasicNewsRecipe
 
 class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
-    title          = u'36氪'
-    oldest_article = 2
+    title          = u'下厨房美食生活杂志'
+    oldest_article = 8
     max_articles_per_feed = 10
 
     feeds          = [
-	(u'36氪', u'http://feeds.feedburner.com/36kr/ikindle'),
+	(u'下厨房美食生活杂志', u'http://feeds.feedburner.com/xiachufang/feed'),
 	]
     extra_css = """
     h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
     h2,h4 {padding-bottom: 3px;font-size: 120%;font-weight: 900; color: #222222;}\n
-    h5.itemposttime, p.caption, div.datestamp {display:block; clear:both; font-size: 70%; color: #666666;}
+    div.info, h5.itemposttime, p.caption, div.datestamp {display:block; clear:both; font-size: 70%; color: #666666;}
     """
 
     __author__            = 'ikindle.mobi'
     __version__            = '1.0'
     language = 'zh-CN'
     pubisher  = 'British Broadcasting Corporation'
-    description           = u'关注互联网创业'
+    description           = u'唯有美食与爱不可辜负 (下厨房出品)'
     category              = 'News, Chinese'
     remove_javascript = True
-    masthead_url = 'http://ikindle.mobi/media/pic/36kr.png'
-    use_embedded_content   = True
+    masthead_url = 'http://blog.xiachufang.com/wp-content/themes/xiachufang/img/logo.gif'
+    use_embedded_content   = False
     no_stylesheets = True
     encoding               = 'UTF-8'
     conversion_options = {'linearize_tables':True}
-    remove_tags = [
-        dict(name='div', attrs={'class':['show-on-desktops',]}),
+    keep_only_tags = [
+        dict(name="div",attrs={'class':['post',]}),
         ]
-    remove_tags_after = [
-        dict(name='div', attrs={'class':['show-on-desktops',]}),
+    remove_tags = [
+        dict(name='div', attrs={'class':['entry-meta',]}),
         ]
 

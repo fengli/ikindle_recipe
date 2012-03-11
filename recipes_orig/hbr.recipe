@@ -34,4 +34,5 @@ class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
     keep_only_tags = [
         ]
     remove_tags = [
+        dict(name='div', attrs={'class':['feedflare']}),        
         ]

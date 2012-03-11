@@ -9,10 +9,10 @@ class AdvancedUserRecipeSina(BasicNewsRecipe):
         ]
 
     remove_tags = [
-        dict(name='div', attrs={'id':['detailSideL', 'detailTools', 'pageNum', 'clear', 'diggButton',
-                                      'grade', 'editor', 'comments', 'share']}),
+        dict(name='div', attrs={'id':['detailSideL', 'detailTools', 'pageNum', 'clear', 'diggButton', 'grade', 'editor', 'comments', 'share','commentNav']}),
         dict(name='span', attrs={'class':['source']}),
-        dict(name='div', attrs={'class':['share']}), 
+        dict(name='div', attrs={'class':['share','comment']}),
+        dict(name='p', attrs={'class':['adv']}),
         ]
 
     remove_attributes = ['width','height', 'color', 'style', 'href']
@@ -47,3 +47,4 @@ class AdvancedUserRecipeSina(BasicNewsRecipe):
     no_stylesheets = True
     encoding               = 'utf-8'
     conversion_options = {'linearize_tables':True}
+    

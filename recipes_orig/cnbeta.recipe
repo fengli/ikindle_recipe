@@ -38,6 +38,7 @@ class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
       ]
     remove_tags = [
         dict(name='span', attrs={'class':['leftBorder','midBlock','rightBorder']}),
-        dict(name='div', attrs={'class':['digbox']}),        
+        dict(name='div', attrs={'class':['digbox']}),
+        dict(name='p', attrs={'id':['news_author']}),                
         ]
 

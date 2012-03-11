@@ -4,12 +4,12 @@
 from calibre.web.feeds.news import BasicNewsRecipe
 
 class AdvancedUserRecipeVOAChinese(BasicNewsRecipe):
-    title          = u'豆瓣经典短篇阅读'
+    title          = u'豆瓣最受欢迎书评'
     oldest_article = 7
     max_articles_per_feed = 10
 
     feeds          = [
-	(u'豆瓣经典短篇阅读', u'http://www.douban.com/feed/group/classicreading/discussion')
+	(u'豆瓣最受欢迎书评', u'http://feeds.feedburner.com/douban/IhBf')
 	]
     extra_css = """
     h3 {font-size: 130%;font-weight: 900; color: #222222;}\n
@@ -22,20 +22,22 @@ class AdvancedUserRecipeVOAChinese(BasicNewsRecipe):
     __version__            = '1.0'
     language = 'zh-CN'
     pubisher  = 'ikindle.mobi'
-    description           = u'名家名篇。王小波，鲁迅，村上春树，屠格涅夫，钱钟书，林语堂。'
-    category              = 'novel'
-    masthead_url = 'http://ikindle.mobi/media/pic/dbnv.png'     
+    description           = u'豆瓣最受欢迎的书评,'
+    category              = 'blog'
+    masthead_url = 'http://ikindle.mobi/media/pic/dbbookreview.png'
     remove_javascript = True
-    use_embedded_content   = True
+    use_embedded_content   = False
     no_stylesheets = True
     encoding               = 'UTF-8'
     conversion_options = {'linearize_tables':True}
     keep_only_tags = [
+        dict(name='h1', attrs={}),
+        dict(name='div', attrs={'class':['piir',]}),        
       ]
     publication_type       = 'blog'
     remove_tags = [
+        dict(name='div', attrs={'class':['review-panel']}),
       ]
     remove_tags_after = [
+        dict(name='div', attrs={'class':['review-panel']}),        
       ]
-    
-

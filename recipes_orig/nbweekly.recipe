@@ -29,6 +29,4 @@ class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
     publication_type       = 'blog'
     conversion_options = {'linearize_tables':True}
 
-    remove_tags = [
-        ]
 

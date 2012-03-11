@@ -4,12 +4,12 @@
 from calibre.web.feeds.news import BasicNewsRecipe
 
 class AdvancedUserRecipeVOAChinese(BasicNewsRecipe):
-    title          = u'科学松鼠会'
-    oldest_article = 5
-    max_articles_per_feed = 3
+    title          = u'FT中文网-英国《金融时报》'
+    oldest_article = 2
+    max_articles_per_feed = 15
 
     feeds          = [
-	(u'科学松鼠会', u'http://feeds.feedburner.com/songshuhui/Dqcj')
+	(u'FT中文网_英国《金融时报》', u'http://feeds.feedburner.com/ftchinese/rss')
 	]
     extra_css = """
     h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
@@ -20,21 +20,27 @@ class AdvancedUserRecipeVOAChinese(BasicNewsRecipe):
     __author__            = 'ikindle.mobi'
     __version__            = '1.0'
     language = 'zh-CN'
-    pubisher  = '科学松鼠会'
-    description           = u'科学松鼠会是一个汇聚了当代最优秀的华语青年科学传播者的非营利机构，旨在剥开科学的坚果，帮助人们领略科学之美妙'
-    category              = u'News'
-    masthead_url = 'http://ikindle.mobi/media/pic/kxssh.png'     
+    pubisher  = u'每日鲜果精选'
+    description           = u'FT中文网是英国《金融时报》唯一的非英语网站，致力于向中国商业菁英和企业决策者及时提供来自全球的商业、经济、市场、管理和科技新闻.'
+    category              = u'News.'
     remove_javascript = True
-    use_embedded_content   = True
+    use_embedded_content   = False
     publication_type       = 'blog'    
     no_stylesheets = True
+    masthead_url = 'http://s.ftimg.net/img/logo.gif'        
     encoding               = 'UTF-8'
     conversion_options = {'linearize_tables':True}
     remove_attributes = ['href']
     keep_only_tags = [
       ]
+    remove_tags_after = [
+        dict(name='div',attrs={'class':['print_content']}),
+        ]
     remove_tags = [
-      dict(name='div', attrs={'class':['editornote',]}),
+        dict(name='div',attrs={'id':['printoption']}),        
       # dict(name='h4', attrs={'class':['sectionHeader']}),
       ]
+
+    def print_version (self, url):
+        return url+'/?print=y'
 

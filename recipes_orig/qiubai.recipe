@@ -4,12 +4,12 @@
 from calibre.web.feeds.news import BasicNewsRecipe
 
 class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
-    title          = u'酷壳'
+    title          = u'糗事百科'
     oldest_article = 7
-    max_articles_per_feed = 10
+    max_articles_per_feed = 100
 
     feeds          = [
-	(u'酷壳', u'http://coolshell.cn/feed'),
+	(u'糗事百科', u'http://feed.feedsky.com/qiushi'),
 	]
     extra_css = """
     h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
@@ -21,7 +21,7 @@ class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
     __version__            = '1.0'
     language = 'zh-CN'
     pubisher  = 'British Broadcasting Corporation'
-    description           = u'享受编程和技术所带来的快乐.'
+    description           = u'快乐就是要建立在别人的痛苦之上.'
     category              = 'blog, Chinese'
     remove_javascript = True
     use_embedded_content   = True
@@ -29,10 +29,4 @@ class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
     no_stylesheets = True
     encoding               = 'UTF-8'
     conversion_options = {'linearize_tables':True}
-    remove_tags = [
-        dict(name='table', attrs={'cellspacing':['0'],'cellpadding':['3',],'border':['0',]}),
-        ]
-    remove_tags_after = [
-        dict(name='table', attrs={'cellspacing':['0'],'cellpadding':['3',],'border':['0',]}),
-        ]    
 

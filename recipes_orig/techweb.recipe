@@ -4,12 +4,12 @@
 from calibre.web.feeds.news import BasicNewsRecipe
 
 class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
-    title          = u'36氪'
+    title          = u'TechWeb每日热点推荐'
     oldest_article = 2
-    max_articles_per_feed = 10
+    max_articles_per_feed = 15
 
     feeds          = [
-	(u'36氪', u'http://feeds.feedburner.com/36kr/ikindle'),
+	(u'TechWeb每日热点推荐', u'http://feeds.feedburner.com/techwebdailyhot'),
 	]
     extra_css = """
     h1 {font-size: 130%;font-weight: 900; color: #222222;}\n
@@ -21,18 +21,15 @@ class AdvancedUserRecipeBBCChinese(BasicNewsRecipe):
     __version__            = '1.0'
     language = 'zh-CN'
     pubisher  = 'British Broadcasting Corporation'
-    description           = u'关注互联网创业'
+    description           = u'领先的互联网行业互动媒体。'
     category              = 'News, Chinese'
     remove_javascript = True
-    masthead_url = 'http://ikindle.mobi/media/pic/36kr.png'
+    masthead_url = 'http://ikindle.mobi/media/pic/techweb.gif'
     use_embedded_content   = True
     no_stylesheets = True
     encoding               = 'UTF-8'
     conversion_options = {'linearize_tables':True}
     remove_tags = [
-        dict(name='div', attrs={'class':['show-on-desktops',]}),
-        ]
-    remove_tags_after = [
-        dict(name='div', attrs={'class':['show-on-desktops',]}),
+        dict(name='a', attrs={'rel':['nofollow']}),
         ]
 
